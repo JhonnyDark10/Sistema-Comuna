@@ -1,0 +1,121 @@
+<?page title="Lista" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winTipoActividades" ?>
+<zk>
+	<window id="winTipoActividades" apply="controlador.Adm_Servicios" position="center,center"
+		height="260px" width="410px" closable="true" border="normal"
+		style="
+margin: 0px;
+border: #0093f9 1px solid;
+font: 1em arial, helvetica, sans-serif;
+color: white;
+background:#ffffff;border-radius: 8px;">
+
+		<image src="/A_Iconos/registro.png"></image>
+		<groupbox>
+		
+
+		<tabbox id="tb" height="140px"
+			style="border-radius: 5px;border: white 1px solid;">
+			<tabs>
+				<tab label="Datos"
+					style="border-radius: 5px;font-weight: bold;background:white;font-family: serif;font-size: 1em;border: none;" />
+			</tabs>
+			<tabpanels>
+				<tabpanel style="border-radius: 5px;">
+
+					<grid
+						style="background-color: transparent;
+			border: white 1px solid;
+			border-radius: 5px;">
+
+
+						<columns
+							style="background-color: transparent;">
+							<column align="left" hflex="min" />
+							<column />
+
+						</columns>
+						<rows>
+							<row>
+								<cell>
+									<label
+										style="font-size: 1em;color:black">
+										Nombre:
+									</label>
+								</cell>
+								<cell>
+									<textbox width="270px" height="25px"
+										maxlength="40"
+										style="text-transform: capitalize;font-size: 1em;color:black;"
+										id="txt_nombre"
+										value="@{winTipoActividades$composer.controlingresotipo.desServicios}">
+									</textbox>
+								</cell>
+							</row>
+							<row>
+								<cell>
+									<label
+										style="font-size: 1em;color:black">
+										Valor:
+									</label>
+								</cell>
+								<cell>
+									<textbox width="270px" height="25px"
+										maxlength="40"
+										style="text-transform: capitalize;font-size: 1em;color:black;"
+										id="txt_descripcion"
+										value="@{winTipoActividades$composer.controlingresotipo.valorServicios}">
+									</textbox>
+								</cell>
+							</row>
+							<row>
+								<cell>
+									<label
+										style="font-size: 1em;color:black">
+										Categoria:
+									</label>
+								</cell>
+								<cell>
+									<combobox
+										model="@{$composer.SisCtrldepartamentodao}" width="268px"
+										style="font-size: 1em;color:black" height="25px"
+										selectedItem="@{winTipoActividades$composer.controlingresotipo.sisTiposervicio}"
+										value="@{winTipoActividades$composer.controlingresotipo.sisTiposervicio.descripcionServicios}">
+										<template name="model">
+											<comboitem
+												label="${each.descripcionServicios}"
+												style="font-size: 1em;color:black;" />
+										</template>
+									</combobox>
+								</cell>
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+
+			</tabpanels>
+		</tabbox>
+		<separator></separator>
+		<toolbar>
+			<space width="150px"></space>
+						
+			<button id="grabar" label="Guardar" src="A_Iconos/guardar.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+									
+				
+		    <button id="salir" label="Salir" src="A_Iconos/regresar.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+									
+		
+		</toolbar></groupbox>
+		<toolbar>
+			<label style="font-size: 0.7em;color:black"
+				value="Identificación N°" visible="false">
+			</label>
+			<label id="numero" visible="false"
+				style="font-family: serif;font-size: 0.7em;color:black"
+				value="@{winTipoActividades$composer.TipoareaSelecionada.id_Servicios}" />
+
+		</toolbar>
+	</window>
+</zk>

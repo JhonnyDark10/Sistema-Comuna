@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListadoComuneros" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f29b01a5-319f-4ccb-aa14-de98c49f53fa">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="WebContent\A_ModulosPagos\ReportePagos\DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[c2lzdGVtYV9jb211bmFzLnNlZ19wZXJmaWwgQVMgLDExMiw3NixmYWVlZDQ5MS1kMjYwLTRhZTIt
+YmZjZS1lMWIwYWFlZWNmYmY7c2lzdGVtYV9jb211bmFzLnNlZ191c3VhcmlvIEFTICwzNzcsMTc5
+LDE4YWE0YTk2LWI1MjEtNGFlYy1hMDE0LTkwZjQ2ZWYzNTJlOTs=]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="394"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="599"/>
+	<queryString>
+		<![CDATA[SELECT sistema_comunas.seg_perfil.codigo,
+	sistema_comunas.seg_perfil.`Id_perfil`,
+	sistema_comunas.seg_usuario.`CEDULA`,
+	
+	CONCAT(sistema_comunas.seg_usuario.`APELLIDO_PATERNO`,' ',sistema_comunas.seg_usuario.`APELLIDO_MATERNO`,' ',sistema_comunas.seg_usuario.`NOMBRE`) AS nombres,
+	
+	sistema_comunas.seg_usuario.estado,
+	sistema_comunas.seg_usuario.`CELULAR`
+FROM sistema_comunas.seg_usuario
+	INNER JOIN sistema_comunas.seg_perfil ON 
+	 sistema_comunas.seg_usuario.id_fk_perfil = sistema_comunas.seg_perfil.`Id_perfil`
+	
+WHERE  sistema_comunas.seg_usuario.estado ="A"
+AND sistema_comunas.seg_perfil.`Id_perfil` = 2]]>
+	</queryString>
+	<field name="codigo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_perfil"/>
+	</field>
+	<field name="Id_perfil" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Id_perfil"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_perfil"/>
+	</field>
+	<field name="CEDULA" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CEDULA"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_usuario"/>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nombres"/>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="estado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_usuario"/>
+	</field>
+	<field name="CELULAR" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CELULAR"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_usuario"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="108" splitType="Stretch">
+			<staticText>
+				<reportElement x="70" y="3" width="430" height="30" uuid="62fa1590-1396-40e1-93c5-0dfc4126a83e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Listado de Comuneros]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="48" width="50" height="22" uuid="d69df697-f1a9-47bd-942b-1f7f07504bd3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e83129c1-3c91-4458-a93d-2990ec1bade9"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="83" y="48" width="81" height="22" uuid="2d31c727-07c0-4e6f-9c74-c54202832c82">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e83129c1-3c91-4458-a93d-2990ec1bade9"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="99" y="1" width="100" height="20" forecolor="#FFFFFF" backcolor="#CC0000" uuid="9aa88615-256f-4af4-981a-dd976c4893bc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4005296-700b-4f8a-8133-f93b47218968"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#050505"/>
+					<leftPen lineWidth="1.0" lineColor="#050505"/>
+					<bottomPen lineWidth="1.0" lineColor="#050505"/>
+					<rightPen lineWidth="1.0" lineColor="#050505"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cédula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="199" y="1" width="166" height="20" forecolor="#FFFFFF" backcolor="#CC0000" uuid="0189c588-8281-4d16-9155-22b973abee2a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4005296-700b-4f8a-8133-f93b47218968"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#050505"/>
+					<leftPen lineWidth="1.0" lineColor="#050505"/>
+					<bottomPen lineWidth="1.0" lineColor="#050505"/>
+					<rightPen lineWidth="1.0" lineColor="#050505"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="365" y="0" width="90" height="21" forecolor="#FFFFFF" backcolor="#CC0000" uuid="065d5eee-7c88-4e3a-b71d-7bfc120f0273">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4005296-700b-4f8a-8133-f93b47218968"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#050505"/>
+					<leftPen lineWidth="1.0" lineColor="#050505"/>
+					<bottomPen lineWidth="1.0" lineColor="#050505"/>
+					<rightPen lineWidth="1.0" lineColor="#050505"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Celular]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="99" y="0" width="100" height="20" uuid="51addf9e-1b00-45cf-8c08-5c0da7056354">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d7e77617-9274-4a37-ab31-8721d6a3d852"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CEDULA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="199" y="0" width="166" height="20" uuid="a3937734-4c5c-46fe-8f5a-b4c4ff7d2ac7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a23922a3-d255-46c0-999c-098e5dfc983c"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="0" width="90" height="20" uuid="75857e10-0120-4041-a0e6-68f1872fb584">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0c72f281-bca7-4a10-99b1-635fd74123db"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CELULAR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Historial" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="35e46d3b-b2d3-48df-b2dc-58d62df9c33c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="WebContent\A_ModulosPagos\ReportePagos\DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="322"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="671"/>
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[c2lzdGVtYV9jb211bmFzLnNlZ19wZXJpb2RvX2VuY2FyZ28gLDE1LDIyNCw4YTgxOTQ3Ny02MDZm
+LTQzMWUtYjFjOC1mYzQ5NTUxNDI4YmQ7c2lzdGVtYV9jb211bmFzLnNlZ191c3VhcmlvICwxNzcs
+MTUsOTExYmYyMmYtOWYzMi00YjI1LWJiZWQtYzRiOWY5NjhmMjQzOw==]]>
+	</property>
+	<parameter name="fechaini" class="java.util.Date"/>
+	<parameter name="fechafin" class="java.util.Date"/>
+	<parameter name="periodoId" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT sistema_comunas.seg_periodo_encargo.valor_ingreso,
+	date_format( sistema_comunas.seg_periodo_encargo.periodo_desde,'%Y-%m-%d') AS fechaDesde,
+	date_format( sistema_comunas.seg_periodo_encargo.periodo_hasta,'%Y-%m-%d') AS fechaHasta,
+	CONCAT( sistema_comunas.seg_usuario.`APELLIDO_PATERNO`,' ',sistema_comunas.seg_usuario.`APELLIDO_MATERNO`,' ',sistema_comunas.seg_usuario.`NOMBRE`) AS nombres,
+	sistema_comunas.seg_usuario.`CELULAR`,
+	sistema_comunas.seg_usuario.`EMAIL`,
+	sistema_comunas.seg_periodo_encargo.estado,
+	sistema_comunas.seg_usuario.`CEDULA`,
+	sistema_comunas.seg_periodo_encargo.id_periodo
+FROM sistema_comunas.seg_periodo_encargo
+	INNER JOIN sistema_comunas.seg_usuario ON 
+	 sistema_comunas.seg_periodo_encargo.fk_seg_usuario = sistema_comunas.seg_usuario.id_usuario 
+WHERE 
+	 sistema_comunas.seg_periodo_encargo.id_periodo =  $P{periodoId} 
+	 AND sistema_comunas.seg_periodo_encargo.periodo_desde >= $P{fechaini} 
+	 AND sistema_comunas.seg_periodo_encargo.periodo_hasta <= $P{fechafin}]]>
+	</queryString>
+	<field name="valor_ingreso" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="valor_ingreso"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_periodo_encargo"/>
+	</field>
+	<field name="fechaDesde" class="java.util.Date">
+		<property name="com.jaspersoft.studio.field.label" value="fechaDesde"/>
+	</field>
+	<field name="fechaHasta" class="java.util.Date">
+		<property name="com.jaspersoft.studio.field.label" value="fechaHasta"/>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nombres"/>
+	</field>
+	<field name="CELULAR" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CELULAR"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_usuario"/>
+	</field>
+	<field name="EMAIL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="EMAIL"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_usuario"/>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="estado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_periodo_encargo"/>
+	</field>
+	<field name="CEDULA" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CEDULA"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_usuario"/>
+	</field>
+	<field name="id_periodo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id_periodo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_periodo_encargo"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="100" height="100" uuid="d8ed7256-691a-460b-b7c0-d869553ea6a7"/>
+				<imageExpression><![CDATA["comunas.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="110" y="29" width="410" height="40" forecolor="#030303" backcolor="#FFFCFC" uuid="ca9c5b3e-2890-40ae-bf23-53dea3e1862b"/>
+				<textElement>
+					<font size="26" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Comuna Montañita]]></text>
+			</staticText>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="550" height="32" forecolor="#000000" backcolor="#CC0000" uuid="de05a36a-070d-4e83-aba6-d9f406d93015"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="402" y="11" width="144" height="20" forecolor="#FFFFFF" uuid="755ca70b-b0e5-4a58-9635-71a5ae98d913"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="165" splitType="Stretch">
+			<staticText>
+				<reportElement x="70" y="10" width="430" height="30" uuid="6ac5536a-c472-4b14-b8e4-005c51942ca9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Reporte De Todos los Ingresos Realizados en el Periodo del Presidente actual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="34" y="57" width="60" height="23" uuid="b5201ac2-2549-4ca7-8ba6-4c8841c6d72f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dc4c7954-c589-44e8-8f2a-f7d24a728dc3"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cédula]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="114" y="58" width="100" height="22" uuid="eed0cff4-73b8-451b-a765-f4f594ee12b5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dc4c7954-c589-44e8-8f2a-f7d24a728dc3"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CEDULA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="35" y="80" width="59" height="20" uuid="9644b69a-cfaf-4fc9-92cf-4e6f60674f32">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a871a0d4-8b88-44f3-b899-907ffbe66c18"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="114" y="80" width="110" height="20" uuid="06b0acdf-5a25-492f-8520-04d12afdd79b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a871a0d4-8b88-44f3-b899-907ffbe66c18"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="310" y="58" width="70" height="22" uuid="dc5e312d-0f8d-4f98-992f-db5556920cb9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1694e599-cdf0-49d0-89ae-e444fe80a799"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Celular]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="389" y="58" width="92" height="22" uuid="fa9cc56c-4e37-4132-9e00-39ce881591f5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1694e599-cdf0-49d0-89ae-e444fe80a799"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CELULAR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="310" y="80" width="70" height="20" uuid="d6794922-72f8-4959-bdf0-dd87d881c086">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0a93c32a-a094-44ed-8a44-766cee12a8e2"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="389" y="80" width="92" height="20" uuid="46857f56-2e79-4fc0-a815-3edf97bbd0f2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0a93c32a-a094-44ed-8a44-766cee12a8e2"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{EMAIL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="34" y="100" width="80" height="20" uuid="21c5cacb-07f1-45b8-8fa2-cf128eb8a70c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3c2dab49-bff4-4fb0-8eb6-e8c31661d701"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periodo Desde]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="308" y="100" width="69" height="20" uuid="c8ce1d0e-e86d-4d63-91f4-1c85a7d84305">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cc652124-5b53-47dc-8f5b-79e345923813"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periodo Hasta]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="114" y="100" width="110" height="20" uuid="bc6b1ef8-8f7e-4917-b886-40420a1de1eb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3c2dab49-bff4-4fb0-8eb6-e8c31661d701"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fechaDesde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="388" y="100" width="112" height="20" uuid="dc2f5457-85ee-4556-a815-9882075f2c1b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cc652124-5b53-47dc-8f5b-79e345923813"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fechaHasta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="310" y="134" width="92" height="22" uuid="26b27e9b-9565-4644-bc93-bbc64cba0ba7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="39d512a4-dca4-43fb-bada-6babb3fd8f94"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Periodo $]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="406" y="134" width="110" height="22" forecolor="#F70702" uuid="85c51306-827e-4c67-a3eb-ee16ef6c7dbf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="39d512a4-dca4-43fb-bada-6babb3fd8f94"/>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_ingreso}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<summary>
+		<band height="61" splitType="Stretch">
+			<subreport>
+				<reportElement x="-20" y="12" width="590" height="48" uuid="514a3c9a-7dac-41a3-8bc4-2299a6d3b0d3"/>
+				<subreportParameter name="fechaini">
+					<subreportParameterExpression><![CDATA[$F{fechaDesde}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fechafin">
+					<subreportParameterExpression><![CDATA[$F{fechaHasta}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["PresidentePagoComuneros.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

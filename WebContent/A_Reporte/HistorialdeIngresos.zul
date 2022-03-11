@@ -1,0 +1,163 @@
+<?page title="Lista de Embarcaciones" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winReporte" ?>
+<zk>
+	<window id="winReporte" height="100%" width="100%" border="none"
+		apply="controlador.ReporteHistorialIngresos" closable="true"
+		position="Right,center"
+		style="
+		margin: 0px;
+		border: #0E1C78 2px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;
+		background:#ffffff;border-radius: 10px;">
+
+
+		<toolbar>
+
+			<image src="/A_Iconos/tituloreport.png"></image>
+			<separator></separator>
+			<separator></separator>
+			<label
+				style="font-weight: bold;font-size: 0.7em;color:black">
+				INFORME SOBRE EL HISTORIAL
+
+			</label>
+
+
+			<separator></separator>
+			<label
+				style="font-weight: bold;font-size: 0.7em;color:black">
+				DE INGRESOS POR COMUNEROS / PRESIDENTES
+			</label>
+			<separator></separator>
+
+		</toolbar>
+
+		<tabbox id="tb" mold="accordion"
+			style="
+		margin: 0px;
+		border: #0093f9 1px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;">
+			<tabs>
+				<tab label="Datos"
+					style="padding: 0px 0px 0px 6px;font-family: serif;font-size: 1em;" />
+				<tab label="Reporte"
+					style="padding: 0px 0px 0px 6px;font-family: serif;font-size: 1em;" />
+
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+
+
+					<separator></separator>
+					<space width="2%"></space>
+					<label style="font-size: 0.8em;color:black">
+						Escoger Reporte:
+					</label>
+					<separator></separator>
+					<separator></separator>
+					<separator></separator>
+
+					<radio id="radio_historial"
+						style="font-size: 0.85em;color:black"
+						label="Historial Ingresos Presidente Actual" />
+					<separator></separator>
+
+
+					<radio id="radio_historial2"
+						style="font-size: 0.85em;color:black"
+						label="Historial Ingresos Presidente Seleccionado" />
+							<space width="11%"></space>
+					<combobox id="combopresidentes" height="40px"
+						model="@{$composer.SisCtrlpresidentes}" width="190px"
+						style="font-size: 0.85em;color:black"
+						selectedItem="@{$composer.Periodoseleccionado}">
+						<template name="model">
+							<comboitem label="${each.segUsuario.apellidoPaterno} ${each.segUsuario.apellidoMaterno} ${each.segUsuario.nombre} "
+								style="font-size: 1em;color:black;" />
+						</template>
+					</combobox>
+						
+						<space ></space>
+						<label id="ver0" style="font-size: 0.80em;color:black">
+						Periodo:
+					</label>
+					<datebox id="ver1" style="font-size: 0.9em">
+						
+					</datebox>
+					<datebox id="ver2" style="font-size: 0.9em">
+						
+					</datebox>
+					
+								<separator></separator>
+					
+
+					<radio id="radio_fechas"
+						style="font-size: 0.85em;color:black"
+						label="Historial Ingresos por Fechas" />
+                     					
+					<space width="10%"></space>
+
+					<label id="fi" style="font-size: 0.80em;color:black">
+						Fecha Inicio:
+					</label>
+					<datebox format="MM-dd-yyyy" id="fecha_inicioB"
+						style="font-size: 0.9em;" />
+					<space></space>
+					<label id="ff" style="font-size: 0.80em;color:black">
+						Fecha Fin:
+					</label>
+					<datebox format="MM-dd-yyyy" id="fecha_finB"
+						style="font-size: 0.9em;" />
+					
+					
+					
+					<separator></separator>
+					<radio id="radio_comuneros"
+						style="font-size: 0.85em;color:black"
+						label="Historial Pagos Comuneros" />
+					<space width="11%"></space>
+					<combobox id="combocomuneros" height="40px"
+						model="@{$composer.SisCtrlusuario}" width="190px"
+						style="font-size: 0.85em;color:black"
+						selectedItem="@{$composer.TipocomunerosSelecionada}">
+						<template name="model">
+							<comboitem label="${each.apellidoPaterno} ${each.apellidoMaterno} ${each.nombre}"
+								style="font-size: 1em;color:black;" />
+						</template>
+					</combobox>
+					
+					
+					<separator></separator>
+					<separator></separator>
+					<separator></separator>
+					<separator></separator>
+					<separator></separator>
+					<separator></separator>
+					<separator></separator>
+
+					<space width="30%"></space>
+
+
+					<button id="imprimir" label="Reporte"
+						src="A_Iconos/imprimir.png" height="33px"
+						style="border-radius: 5px;font-size: 0.9em;color:white" />
+
+
+
+
+				</tabpanel>
+
+
+				<tabpanel id="JANIO">
+
+
+
+				</tabpanel>
+
+			</tabpanels>
+		</tabbox>
+
+	</window>
+</zk>

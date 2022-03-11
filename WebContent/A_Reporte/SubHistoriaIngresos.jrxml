@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SubHistoriaIngresos" pageWidth="595" pageHeight="542" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="20" uuid="e86e9732-de18-4b73-874a-283e18db0509">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="WebContent\A_ModulosPagos\ReportePagos\DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="195"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="798"/>
+	<subDataset name="Dataset1" uuid="7b170151-e93b-4a76-a8e3-d9bd482c086d">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="WebContent\A_ModulosPagos\ReportePagos\DataAdapter.xml"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="fechaini" class="java.util.Date"/>
+		<parameter name="fechafin" class="java.util.Date"/>
+		<queryString>
+			<![CDATA[SELECT sistema_comunas.vistalistadoserviciosdistintos.cedula,
+	sistema_comunas.vistalistadoserviciosdistintos.`personaC`,
+	date_format( sistema_comunas.vistalistadoserviciosdistintos.fecha,'%d-%m-%Y') AS fecha,
+	sistema_comunas.vistalistadoserviciosdistintos.total
+FROM sistema_comunas.vistalistadoserviciosdistintos
+WHERE 
+	 sistema_comunas.vistalistadoserviciosdistintos.fecha >= $P{fechaini} 
+	 AND sistema_comunas.vistalistadoserviciosdistintos.fecha <= $P{fechafin}]]>
+		</queryString>
+	</subDataset>
+	<parameter name="fechaini" class="java.util.Date"/>
+	<parameter name="fechafin" class="java.util.Date"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT sistema_comunas.vistalistadoserviciosdistintos.cedula,
+	sistema_comunas.vistalistadoserviciosdistintos.`personaC`,
+	date_format( sistema_comunas.vistalistadoserviciosdistintos.fecha, '%Y-%m-%d') AS fecha,
+	sistema_comunas.vistalistadoserviciosdistintos.total
+FROM sistema_comunas.vistalistadoserviciosdistintos
+WHERE sistema_comunas.vistalistadoserviciosdistintos.fecha >= $P{fechaini} and sistema_comunas.vistalistadoserviciosdistintos.fecha <= $P{fechafin}]]>
+	</queryString>
+	<field name="cedula" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cedula"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seg_usuario"/>
+	</field>
+	<field name="personaC" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="personaC"/>
+	</field>
+	<field name="fecha" class="java.util.Date">
+		<property name="com.jaspersoft.studio.field.label" value="fecha"/>
+	</field>
+	<field name="total" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="total"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="sis_factura"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="11" width="220" height="30" uuid="a3d7d14e-ad90-4e3b-b73e-d0b12dd27c39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Pagos Servicios Comuneros - Clientes]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="5" width="130" height="20" forecolor="#FFFFFF" backcolor="#CC0000" uuid="3ca17318-7492-496a-af09-13aba0620637">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4005296-700b-4f8a-8133-f93b47218968"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#050505"/>
+					<leftPen lineWidth="1.0" lineColor="#050505"/>
+					<bottomPen lineWidth="1.0" lineColor="#050505"/>
+					<rightPen lineWidth="1.0" lineColor="#050505"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cedula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="130" y="5" width="223" height="20" forecolor="#FFFFFF" backcolor="#CC0000" uuid="dc41006d-2e87-4d11-8d48-fb8875478dc2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f1385c55-6a6f-4134-9783-14bed6c54672"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#050505"/>
+					<leftPen lineWidth="1.0" lineColor="#050505"/>
+					<bottomPen lineWidth="1.0" lineColor="#050505"/>
+					<rightPen lineWidth="1.0" lineColor="#050505"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="353" y="5" width="91" height="20" forecolor="#FFFFFF" backcolor="#CC0000" uuid="9931b169-0631-4e6e-9ab1-76def8be9c19">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="62e38c6b-9150-490d-a209-a2c074d222f6"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#050505"/>
+					<leftPen lineWidth="1.0" lineColor="#050505"/>
+					<bottomPen lineWidth="1.0" lineColor="#050505"/>
+					<rightPen lineWidth="1.0" lineColor="#050505"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="444" y="5" width="111" height="20" forecolor="#FFFFFF" backcolor="#CC0000" uuid="f76c1f19-1266-4ff0-be83-7750d2eb7d30">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4225b4df-ea51-414f-b098-59a12f26e9cd"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#050505"/>
+					<leftPen lineWidth="1.0" lineColor="#050505"/>
+					<bottomPen lineWidth="1.0" lineColor="#050505"/>
+					<rightPen lineWidth="1.0" lineColor="#050505"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="130" height="20" uuid="6364fe8f-895b-4936-a0b7-af0accaa3e4b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5a7e39bb-7ff1-4cfc-a929-8da8d6a2d2a2"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="223" height="20" uuid="f7bd0541-68f0-4e01-bd8e-5cc6f0d12627">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5e3c6af9-522b-4830-b16f-e49caa414ad8"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{personaC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="353" y="0" width="91" height="20" uuid="f216afba-9810-4ec6-a20f-dea3a0b5f8a3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9d25a734-aa2c-4c5c-ac37-28015188335a"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="111" height="20" uuid="bb7353b4-e241-445c-a30c-c801377e715b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c4235237-5398-4882-bf4e-b26d73e07688"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

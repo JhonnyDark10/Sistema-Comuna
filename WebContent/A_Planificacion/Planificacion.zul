@@ -1,0 +1,214 @@
+<?page title="Lista" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winTipoActividades" ?>
+<zk>
+	<window id="winTipoActividades"
+		apply="controlador.Plan_Planificaciones" height="350px" width="550px" position="center,center"
+		closable="true" border="normal"
+			style="
+margin: 0px;
+border: #0093f9 1px solid;
+font: 1em arial, helvetica, sans-serif;
+color: white;
+background:#ffffff;border-radius: 8px;">
+
+		<image src="/A_Iconos/registro.png"></image>
+		<groupbox>
+
+		<tabbox id="tb" height="230px"
+			style="border-radius: 5px;border: white 1px solid;">
+			<tabs>
+				<tab label="Datos"
+					style="border-radius: 5px;font-weight: bold;background:white;font-family: serif;font-size: 1em;border: none;" />
+			</tabs>
+			<tabpanels>
+				<tabpanel style="border-radius: 5px;">
+
+					<grid
+						style="background-color: transparent;
+			border: white 1px solid;
+			border-radius: 5px;">
+
+
+						<columns
+							style="background-color: transparent;">
+							<column align="left" hflex="min" />
+							<column />
+          					<column align="left" hflex="min" />
+							<column />
+						</columns>
+						<rows>
+							<row>
+								<cell>
+									<label
+										style="font-size: 1em;color:black">
+										Tipo de Tarea:
+									</label>
+								</cell>
+								<cell>
+									<combobox id="cbo_tipoTarea"
+											style="font-size: 1em;color:black" height="30px"
+											model="@{winTipoActividades$composer.ListaTipoTarea}"
+											selectedItem="@{winTipoActividades$composer.persona.sisPlanTiptarea}"
+											value="@{winTipoActividades$composer.persona.sisPlanTiptarea.descripcion}"
+											width="140px">
+											<template name="model">
+												<comboitem
+													style="font-size: 1em;color:black"
+													label="${each.descripcion}" />
+											</template>
+										</combobox>
+								</cell>
+								<cell>
+									<label
+										style="font-size: 1em;color:black">
+										Dia:
+									</label>
+								</cell>
+								<cell>
+									<combobox id="cbo_dia"
+											style="font-size: 1em;color:black" height="30px"
+											model="@{winTipoActividades$composer.ListaDias}"
+											selectedItem="@{winTipoActividades$composer.persona.sisPlanDia}"
+											value="@{winTipoActividades$composer.persona.sisPlanDia.descripcion}"
+											width="140px">
+											<template name="model">
+												<comboitem
+													style="font-size: 1em;color:black"
+													label="${each.descripcion}" />
+											</template>
+										</combobox>
+								</cell>
+							</row>
+							<row>
+							
+							<cell>
+							<label
+										style="font-size: 1em;color:black">
+										Fecha:
+									</label>
+							</cell>
+							<cell>
+							<datebox format="MM-dd-yyyy" id="fecha"
+								style="font-size: 0.9em;" 
+								value="@{winTipoActividades$composer.persona.fecha}"/>
+							</cell>
+							<cell>
+							<label
+										style="font-size: 1em;color:black">
+										Hora:
+									</label>
+							</cell>
+							<cell>
+							<textbox   id="hora"
+                             value="@{winTipoActividades$composer.persona.hora}" style="font-size: 1em;"/>
+							</cell>
+							
+							</row>
+							
+							
+							<row>
+							<cell>
+							<label
+										style="font-size: 1em;color:black">
+										Contacto:
+									</label>
+							</cell>
+							<cell>
+							<textbox width="120px"
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="txt_contacto" value="@{winTipoActividades$composer.persona.contacto}"
+											
+											maxlength="100"></textbox>
+							</cell>
+							
+							<cell>
+							<label
+										style="font-size: 1em;color:black">
+										Celular:
+									</label>
+							</cell>
+							<cell>
+							<textbox width="120px"
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="txt_celular" value="@{winTipoActividades$composer.persona.celular}"
+											
+											maxlength="10"></textbox>
+							</cell>
+							</row>
+							
+							<row>
+							<cell>
+							<label
+										style="font-size: 1em;color:black">
+										Lugar:
+									</label>
+							</cell>
+							<cell>
+							<textbox width="120px"
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="txt_lugar" value="@{winTipoActividades$composer.persona.lugar}"
+											
+											maxlength="100"></textbox>
+							</cell>
+							
+							<cell>
+							<label
+										style="font-size: 1em;color:black">
+										Dirección:
+									</label>
+							</cell>
+							<cell>
+							<textbox width="120px"
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="txt_direccion" value="@{winTipoActividades$composer.persona.direccion}"
+											
+											maxlength="100"></textbox>
+							</cell>
+							</row>
+							
+							<row>
+							<cell>
+							<label
+										style="font-size: 1em;color:black">
+										Observacion:
+									</label>
+							</cell>
+							<cell>
+							<textbox width="120px"
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="txt_descripcion" value="@{winTipoActividades$composer.persona.descripcion}"
+											
+											maxlength="100"></textbox>
+							</cell>
+							<cell>
+							</cell>
+							<cell>
+							</cell>
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+
+			</tabpanels>
+		</tabbox>
+		<toolbar>
+			<space width="210px"></space>
+								
+			<button id="grabar" label="Guardar" src="A_Iconos/guardar.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+									
+				
+		    <button id="salir" label="Salir" src="A_Iconos/regresar.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+									
+		
+		</toolbar>
+		</groupbox>
+		
+	</window>
+</zk>

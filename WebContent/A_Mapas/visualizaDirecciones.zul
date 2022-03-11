@@ -1,0 +1,28 @@
+<zk>
+ <window
+  apply="org.zkoss.bind.BindComposer"
+  viewModel="@id('vm') @init('controlador.VisualizarComunas')"
+  title="${labels.app.titleWindow}"
+  position="Right,center"
+  
+  border="none"
+  width="100%"
+  height="100%"
+  	style="
+		margin: 0px;
+		border: #0E1C78 2px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;
+		background:#ffffff;border-radius: 10px;">
+  
+  
+  <gmaps 
+  id="mymap"    zoom="16" lat="-1.8207856" lng="-80.7593947" width="100%" height="100%" onMapClick="@command('getCoordenadas')" >
+ 
+   
+  </gmaps>
+  
+  
+  
+ </window>
+</zk>

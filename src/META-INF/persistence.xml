@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="Sistema_Comuna" transaction-type="RESOURCE_LOCAL">
+		<class>model.SegMenu</class>
+		<class>model.SegPerfil</class>
+		<class>model.SegPeriodoEncargo</class>
+		<class>model.SegPermiso</class>
+		<class>model.SegUsuario</class>
+		<class>model.SegUsuariogenero</class>
+		<class>model.SisCategoriapago</class>
+		<class>model.SisControlpago</class>
+		<class>model.SisDetallefacturaservicio</class>
+		<class>model.SisFactura</class>
+		<class>model.SisFormapago</class>
+		<class>model.SisServicio</class>
+		<class>model.SisTiposervicio</class>
+		<class>model.Vistalistadopagoscomunero</class>
+		<class>model.Vistalistadoserviciosdistinto</class>
+		<class>model.SisPlanDia</class>
+		<class>model.SisPlanTiptarea</class>
+		<class>model.SisPlanificacion</class>
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sistema_comunas"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.password" value="12345"/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+		</properties>
+	</persistence-unit>
+</persistence>

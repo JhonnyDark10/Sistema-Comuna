@@ -1,0 +1,562 @@
+<?page title="Lista" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winEmpleados" ?>
+<zk>
+	<window id="winEmpleados" apply="controlador.Ctrl_IngresoPagoServcios"
+		width="830px" height="540px" border="none" position="center,center"
+		style="
+margin: 0px;
+border: #0093f9 1px solid;
+font: 1em arial, helvetica, sans-serif;
+color: white;
+background:#ffffff;border-radius: 8px;">
+
+
+		<vlayout vflex="1" hflex="1"
+			style="
+font: 1em arial, helvetica, sans-serif;
+background:#ffffff;">
+
+				<image src="/A_Iconos/registro.png"></image>
+<groupbox>
+
+				<toolbar>
+			
+				<label style="font-size: 1em;color:black">
+					Fecha:
+				</label>
+				<textbox id="fechaactual" height="10px" width="80px"
+					style="font-size: 1em;color:black;border: none;" />
+				<label style="font-size: 1em;color:black">
+					Hora:
+				</label>
+				<textbox id="horaactual" height="10px" width="80px"
+					style="font-size: 1em;color:black;border: none;" />
+
+<space></space>
+			
+				<label visible="true" style="font-size: 1em;color:black">
+					Total $
+				</label>
+				<textbox visible="true"
+					style="font-size: 1.3em;color:black;"
+					id="totalfac" width="80px" height="35px" xmlns:w="client">
+					<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+					
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)
+											||  (keyCode == 190)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+
+
+				</textbox>
+				<label style="font-size: 1em;color:black">
+					Efectivo $
+				</label>
+				<textbox
+					style="font-size: 1.3em;color:black;"
+					id="efectivofac" width="80px" height="35px" xmlns:w="client">
+						<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+					
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)
+											||  (keyCode == 190)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+
+
+				</textbox>
+				<label style="font-size: 1em;color:black">
+					Cambio $
+				</label>
+				<textbox id="cambiofac"
+					style="font-size: 1.3em;color:black;"
+					width="80px" height="35px" xmlns:w="client">
+				<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+					
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)
+											||  (keyCode == 190)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+
+
+				</textbox>
+			</toolbar>
+			<separator></separator><separator></separator>
+			<toolbar>
+			<label style="font-size: 1em;color:black">
+					Tipo de Usuario:
+				</label>
+				<space></space>
+				<radio id="radioComuneros"
+							style="font-size: 1em;color:black" label="Comuneros" />
+				
+				<radio id="radioClientes"
+							style="font-size: 1em;color:black" label="Clientes" />
+				
+			</toolbar>
+			<tabbox id="tb" height="160px"
+				style="border-radius: 5px;border: white 1px solid;">
+				<tabs id="tabs">
+					<tab id="A" label="Datos"
+						style="border-radius: 5px;font-weight: bold;background:white;font-family: serif;font-size: 1em;border: none;" />
+				</tabs>
+				<tabpanels>
+					<tabpanel style="border-radius: 5px;">
+
+						<grid
+							style="background-color: transparent;
+			border: white 1px solid;
+			border-radius: 5px;">
+
+
+							<columns
+								style="background-color: transparent;">
+								<column align="left" hflex="min" />
+								<column />
+								<column align="left" hflex="min" />
+								<column />
+								<column align="left" hflex="min" />
+								<column />
+							</columns>
+							<rows>
+								<row height="5px">
+									<cell>
+										<label
+											style="font-size: 1em;color:black;">
+											Cédula:
+										</label>
+
+									</cell>
+									<cell>
+										<textbox width="120px"
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="cedula" value=""
+											
+											maxlength="10" xmlns:w="client">
+										<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+		
+										</textbox>
+									</cell>
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Nombres:
+										</label>
+
+
+									</cell>
+									<cell>
+										<textbox width="120px"
+											height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="nombre" value=""
+											
+											maxlength="40">
+											
+										</textbox>
+									</cell>
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Apellidos Paterno:
+										</label>
+
+
+
+									</cell>
+
+									<cell>
+										<textbox width="120px"
+											height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="apellido1"
+											value=""
+											
+											maxlength="20">
+										</textbox>
+									</cell>
+								</row>
+
+								<row height="5px">
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Apellido Materno:
+										</label>
+
+
+									</cell>
+									<cell>
+										<textbox width="120px"
+											height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="apellido2"
+											value=""
+											
+											maxlength="20">
+										</textbox>
+									</cell>
+
+									<cell>
+										<label
+											style="font-size: 1em;color:black">
+											Celular:
+										</label>
+
+									</cell>
+
+									<cell>
+										<textbox width="120px"
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="celular"
+											value=""
+											
+											maxlength="20">
+										</textbox>
+									</cell>
+
+									<cell>
+										<label id="Lab_nac"
+											style="font-size: 1em;color:black">
+											Nacionalidad:
+										</label>
+
+									</cell>
+									<cell>
+										<textbox width="120px"
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="nacionalidad" value=""
+											
+											>
+										
+										</textbox>
+
+
+									</cell>
+								</row>
+
+								<row>
+								
+									
+									<cell>
+										<label id="Lab_per"
+											style="font-size: 1em;color:black">
+											Perfil:
+										</label>
+
+
+									</cell>
+									<cell>
+										<combobox id="cbo_perfil"
+											style="font-size: 1em;color:black" 
+											model="@{winEmpleados$composer.ListaPerfiles}"
+											selectedItem="@{winEmpleados$composer.perfilSelecionado}"
+											value=""
+											width="120px">
+											<template name="model">
+												<comboitem
+													style="font-size: 1em;color:black"
+													label="${each.codigo}" />
+											</template>
+										</combobox>
+									</cell>
+								<cell>
+										<label id="Lab_gen"
+											style="font-size: 1em;color:black">
+											Genero:
+										</label>
+
+
+
+									</cell>
+
+									<cell>
+										<combobox id="cbo_genero"
+											style="font-size: 1em;color:black" 
+											model="@{winEmpleados$composer.GeneroPersona}"
+											selectedItem="@{winEmpleados$composer.generoSelecionado}"
+											value=""
+											width="120px">
+											<template name="model">
+												<comboitem
+													style="font-size: 1em;color:black"
+													label="${each.descripcionGenero}" />
+											</template>
+										</combobox>
+									</cell>
+								
+								<cell>
+										<label
+											style="font-size: 1em;color:black;">
+											Forma Pago:
+										</label>
+									</cell>
+									<cell>
+									<combobox id="comboPago"
+										model="@{winEmpleados$composer.ListaPagos}" height="30px"
+										width="140px" style="font-size: 1em;color:black"
+										selectedItem="@{winEmpleados$composer.formaSeleccionado}"
+										value="">
+										<template name="model">
+											<comboitem
+												label="${each.descripcionForma}"
+												style="font-size: 1em;color:black;" />
+										</template>
+									</combobox>
+									</cell>
+									
+								</row>
+							</rows>
+						</grid>
+					</tabpanel>
+
+
+				</tabpanels>
+			</tabbox>
+
+
+
+			<tabbox id="tb1" height="160px"
+				style="border-radius: 5px;border: white 1px solid;">
+				<tabs id="tabs1">
+					<tab id="B" label="Descripción de Servicios"
+						style="border-radius: 5px;font-weight: bold;background:white;font-family: serif;font-size: 1em;border: none;" />
+				</tabs>
+				<tabpanels>
+					<tabpanel style="border-radius: 5px;">
+						
+						<columnlayout height="100%">
+			            
+			            
+			            
+			            
+			            <columnchildren width="45%">
+			            
+			            <grid
+							style="background-color: transparent;
+			border: white 1px solid;
+			border-radius: 5px;">
+
+
+							<columns
+								style="background-color: transparent;">
+								<column align="left" hflex="min" />
+								<column />
+								
+							</columns>
+							<rows>
+								<row height="5px">
+									<cell>
+									<label
+											style="font-size: 1em;color:black">
+											Tipos de Servicios:
+										</label>
+									</cell>
+									<cell>
+									<combobox id="cbo_servicios"
+											style="font-size: 1em;color:black" 
+											model="@{winEmpleados$composer.TipoServicios}"
+											selectedItem="@{winEmpleados$composer.tipoServicioSelecionado}"
+											value=""
+											width="120px">
+											<template name="model">
+												<comboitem
+													style="font-size: 1em;color:black"
+													label="${each.desServicios}" />
+											</template>
+										</combobox>
+									</cell>
+								</row>
+								<row height="5px">
+									<cell>
+									<label
+											style="font-size: 1em;color:black">
+											Cantidad:
+										</label>
+									</cell>
+									<cell>
+									<textbox width="80px"
+											height="25px"
+											style="text-transform: capitalize;font-size: 1em;color:black;"
+											id="cantidad"
+											xmlns:w="client">
+										<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+					
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)
+											||  (keyCode == 190)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+									
+									
+									</textbox>
+									</cell>
+								</row>
+							</rows>
+			            </grid>
+			            
+			           
+			           
+			            </columnchildren>
+			            
+			            
+			             <columnchildren width="10%">
+			             
+			            <separator></separator><separator></separator>
+			            <space width="10px"></space>
+			            <button id="sumar"  src="A_Iconos/addd.png"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+						<separator>
+						</separator>
+						<space width="10px"></space>
+						<button id="restar"  src="A_Iconos/eliminar_g.png" 
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+			           
+			           
+			           
+			             </columnchildren>
+			            
+			            
+			             <columnchildren width="45%">
+			             
+			            		             
+			             
+			              <listbox id="listaServicios"
+						model="@{winEmpleados$composer.ListaFac}"
+						selectedItem="@{winEmpleados$composer.serviciosSelecionada}"
+						vflex="1" hflex="1" style="border: #0093f9 1px solid;border-radius: 5px;">
+						<listhead
+							style="border: #0FF647 1px solid;padding: 0px 0px 0px 6px;font-size: 1em;">
+							<listheader label="Descripción" width="60%"
+								style="font-weight: bold;color:white;font-size: 1em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							<listheader label="Cantidad" width="20%"
+								style="font-weight: bold;color:white;font-size: 1em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							
+							<listheader label="Costo U." width="20%"
+								style="font-weight: bold;color:white;font-size: 1em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+						</listhead>
+
+						<template name="model">
+							<listitem
+								style="padding: 0px 0px 0px 6px;font-size: 1em;">
+								<listcell style="font-size: 1em;"
+									label="${each.sisServicio.desServicios}" />
+								
+									<listcell style="font-size: 1em;"
+									label="${each.cantidad}" />
+								
+								<listcell
+									label="${each.sisServicio.valorServicios}"
+									style="text-transform: capitalize;font-size: 1em;" />	
+							</listitem>
+						</template>
+
+					</listbox>
+			             
+			            </columnchildren>
+			            
+			            
+			            
+			            </columnlayout>
+						
+					</tabpanel>
+
+				</tabpanels>
+			</tabbox>
+
+			
+			<toolbar>
+				<space width="480px"></space>
+					 <button id="grabar" label="Guardar / Reporte" src="A_Iconos/imprimir.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white"/>
+									
+				
+		    <button id="salir" label="Salir" src="A_Iconos/regresar.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white" />
+									
+		
+			</toolbar>
+			</groupbox>
+		</vlayout>
+	</window>
+</zk>
+

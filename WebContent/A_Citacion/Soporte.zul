@@ -1,0 +1,204 @@
+<zk>
+	
+
+	<groupbox vflex="1" id="grupo">
+
+		<hbox hflex="1" vflex="1" align="center" pack="center"
+			spacing="100px">
+			<div apply="controlador.RecuperaCorreo">
+
+				<panel id="panel" width="549px"
+					title="Notificaciones o Citaciones"
+					style="font-size:1em;background:#0093f9;border: 1px solid blue;border-radius: 15px;"
+					border="normal">
+
+					<panelchildren>
+						<columnlayout>
+							<columnchildren width="120px">
+
+								<image src="/A_Iconos/soporte.png"
+									height="100px" />
+
+							</columnchildren>
+
+							<columnchildren width="100%">
+								<separator></separator>
+								<separator></separator>
+								<grid width="433px"
+									style="border:none;color:black;">
+									<columns>
+										<column label=""
+											style="font-size:1em;color:black;" width="120px" />
+										<column label="" width="310px" />
+
+									</columns>
+									<rows>
+									
+									
+									    <row>
+
+											<checkbox id="uno" 
+										label="Personal" style="font-size: 1em;color:black"/>
+											<checkbox id="muchos"
+										label="Multiples Comuneros" style="font-size: 1em;color:black"/>
+										</row>
+									
+									
+										<row>
+
+											<label value="Fecha :"
+												style="font-size:1em;color:black">
+											</label>
+
+											<hlayout>
+													<datebox width="120px"
+											height="25px"
+											style="font-size: 1em;color:black;"
+											id="fecha" />
+						
+											</hlayout>
+										</row>
+										<row>
+
+											<label value="Hora :"
+												style="font-size:1em;color:black">
+											</label>
+
+											<hlayout>
+												<textbox height="30px"
+													id="hora" style="font-size:1em;color:black;">
+												</textbox>
+
+
+
+											</hlayout>
+										</row>
+										<row>
+
+											<label
+												value="Asunto"
+												style="font-size:1em;color:black">
+											</label>
+											<hlayout>
+												<textbox height="30px"
+													width="160px" value="" id="asunto"
+													style="font-size:1em;" />
+
+												
+											</hlayout>
+
+										</row>
+										<row>
+
+											<label
+												value="Lugar:"
+												style="font-size:1em;color:black">
+											</label>
+											<hlayout>
+												<textbox height="30px"
+													width="160px" value="" id="lugar"
+													style="font-size:1em;" />
+
+												
+											</hlayout>
+
+										</row>
+										<row>
+
+											<label value="Descripción :"
+												style="font-size:1em;color:black">
+											</label>
+
+											<hlayout>
+												<textbox height="60px" width="290px" multiline="true"
+													id="descripcion" style="font-size:1em;color:black;">
+												</textbox>
+
+
+
+											</hlayout>
+										</row>
+										<row>
+
+											<label
+												value="Correo Destino"
+												style="font-size:1em;color:black">
+											</label>
+											<hlayout>
+												<textbox height="30px"
+													width="160px" value="" id="correo"
+													style="font-size:1em;" />
+
+												
+											</hlayout>
+
+										</row>
+										<row>
+											Validación:
+											<vlayout>
+												<hlayout>
+													<textbox value=""
+														style="font-size:1em;color:black" id="validacion_c"
+														height="30px" width="160px" tabindex="12" />
+													<label
+														id="errorvalidacion" value="" />
+												</hlayout>
+												<hlayout>
+													<captcha id="codigo"
+														frame="true" width="160px" height="50px" />
+													<vlayout>
+														<button
+															src="A_Iconos/actualizar.png" id="actualizar"
+															width="40px" height="20px" />
+
+													</vlayout>
+												</hlayout>
+											</vlayout>
+
+										</row>
+
+									</rows>
+								</grid>
+								<separator></separator>
+								<separator></separator>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+								<space></space>
+
+
+								<button label="Enviar" id="enviar"
+									height="38px"
+									style="border-radius: 5px;font-size: 1.2em;color:white"
+									width="100px" src="A_Iconos/inicio1.png" />
+								<separator></separator>
+								<label id="mensaje"
+									style="text-decoration : underline;font-size:1em;color:blue"
+									value="" />
+
+
+
+							</columnchildren>
+
+						</columnlayout>
+
+					</panelchildren>
+				</panel>
+
+				
+
+
+			</div>
+		</hbox>
+	</groupbox>
+	
+	
+	
+</zk>

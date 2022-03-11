@@ -1,0 +1,163 @@
+<?page title="Lista de Embarcaciones" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winListaCuentas" ?>
+<zk>
+	<window id="winListaCuentas"
+		apply="controlador.Plan_ListaPlanificaciones" height="100%" width="100%"
+		border="none" closable="true" position="Right,center"
+		style="
+		margin: 0px;
+		border: #0E1C78 2px solid;
+		font: 1em arial, helvetica, sans-serif;
+		color: white;
+		background:#ffffff;border-radius: 10px;">
+
+		<vlayout vflex="1" hflex="1" 
+		><groupbox>
+		<separator></separator>
+			<space></space><space></space>
+			<image src="/A_Iconos/listadotareas.png"></image>
+			<toolbar >
+			<separator></separator>
+			<groupbox>
+				<label style="font-size: 1em;color:black">
+					Búsqueda por Fecha
+				</label>
+				<space></space>
+				<label style="font-size: 1em;color:black">
+					Desde:
+				</label>
+                  <space></space>
+                  
+                  <datebox format="MM-dd-yyyy"
+								id="fecha_inicio" style="font-size: 1em;" />
+                  
+                   <space></space> 
+                <label style="font-size: 1em;color:black">
+					Hasta:
+				</label>
+				<space></space>
+				
+				<datebox format="MM-dd-yyyy" id="fecha_fin"
+								style="font-size: 1em;" />
+	<space></space>				
+				
+				<button id="btnBuscar"  src="A_Iconos/buscar_g.png" 
+									style="border-radius: 5px;font-size: 1.2em;color:white"/>
+				
+			
+
+
+               <space ></space><space ></space>
+                <space ></space><space ></space>
+                <space ></space><space ></space>
+                <space ></space>
+              
+			    
+				  <button id="btnNuevo" label="Añadir" src="A_Iconos/agregar_g.png" height="33px"
+									style="text-align: center;border-radius: 5px;font-size: 1.2em;color:white"/>
+									
+				<space ></space>
+                
+                
+                  
+                <button  id="btnEditar" label="Editar" src="A_Iconos/edita_a.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white"/>
+				<space ></space>
+              
+              
+              <button id="btnEliminar" label="Eliminar" src="A_Iconos/eliminar_g.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white"/>
+              
+			</groupbox>
+			</toolbar>
+			</groupbox>
+			<separator></separator>
+			<separator></separator>
+			<label style="font-size: 0.8em;color:black">
+					Tareas
+				</label>
+				<separator></separator>
+				<separator></separator>
+			<hlayout vflex="1" hflex="1" style="background:#0FF647;border-radius: 10px;border: #0FF647">
+				<hlayout vflex="1" hflex="1" >
+				
+					<listbox id="LstCuentas"
+						model="@{winListaCuentas$composer.Usuarios}"
+						selectedItem="@{winListaCuentas$composer.cuentaSelecionada}"
+						vflex="1" hflex="1" style="border: #0093f9 1px solid;border-radius: 5px;">
+						<listhead
+							style="border: #0FF647 1px solid;padding: 0px 0px 0px 6px;font-size: 0.9em;">
+							<listheader label="Tipo Tarea" width="8%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							<listheader label="Dia" width="6%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							<listheader label="Fecha" width="5%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							<listheader label="Hora" width="5%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+							<listheader label="Lugar" width="10%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+						
+						<listheader label="Direccion" width="10%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+						
+						
+						<listheader label="Contacto" width="10%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+						
+						
+						<listheader label="Celular" width="10%"
+								style="font-weight: bold;color:white;font-size: 0.9em;border: #0093f9 0.2px solid;background-color: #0093f9" />
+						
+						</listhead>
+
+						<template name="model">
+							<listitem
+								style="padding: 0px 0px 0px 6px;font-size: 0.9em;">
+								<listcell style="font-size: 0.9em;"
+									label="${each.sisPlanTiptarea.descripcion}" />
+								
+								<listcell
+									label="${each.sisPlanDia.descripcion}"
+									style="text-transform: capitalize;font-size: 0.9em;" />
+							
+								<listcell>
+								<datebox inplace="true" format="MM-dd-yyyy" height="1px"
+                             value="${each.fecha}" style="font-size: 1em;"/>
+								
+								</listcell>						
+									
+							
+									
+									<listcell
+								
+                             label="${each.hora}" style="font-size: 1em;"/>
+								
+										
+									
+									<listcell
+									label="${each.lugar}" 
+									style="font-size: 0.9em;" />
+									
+								<listcell
+									label="${each.direccion}" 
+									style="font-size: 0.9em;" />
+									
+									<listcell
+									label="${each.contacto}" 
+									style="font-size: 0.9em;" />
+								
+									
+									<listcell
+									label="${each.celular}" 
+									style="font-size: 0.9em;" />
+								
+							</listitem>
+						</template>
+
+					</listbox>
+				</hlayout>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

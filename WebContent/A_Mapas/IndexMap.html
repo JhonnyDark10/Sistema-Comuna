@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<?init class="controlador.SegUsuarioDAO" ?>
+<html>
+
+<head>
+
+<style>
+#map {
+	height: 500px;
+	width: 100%;
+}
+</style>
+
+</head>
+<body>
+
+	<h3>Ubicación de Lugar de Residencia Comuneros</h3>
+
+	<div id="map"></div>
+	<script>
+
+	function initMap(){
+
+	var center = {lat: -1.8207856,lng: -80.7593947};
+		
+				
+		var lugares =[
+				{lat: -1.8207856,lng: -80.7593947},
+				{lat: -1.8234021,lng: -80.756219},
+				{lat: -1.8285982,lng: -80.7533094}  
+			];
+		
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 15,
+			center: center
+		});
+		
+		
+		
+		for (var i = 0; i < lugares.length; i++) {
+			var marker = new google.maps.Marker({
+				position: lugares[i],
+				title: "usted esta aqui",
+				map: map
+				});
+		}
+	
+		
+		}
+	</script>
+	<script async defer 
+	 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg-HSSKvxePpB2IaWaIYPmD2dlPPZO9Yw&callback=initMap">
+	</script>
+</body>
+</html>

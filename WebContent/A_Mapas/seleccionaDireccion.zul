@@ -1,0 +1,14 @@
+<zk>
+ <window
+  apply="org.zkoss.bind.BindComposer"
+  viewModel="@id('vm') @init('util.vm.GoogleMapsVM')"
+  title="Comuna Montañita Mapa - google maps"
+  position="center"
+  mode="overlapped"
+  border="normal"
+  width="70%"
+  height="80%" closable="true">
+  
+  <gmaps id="mymap" zoom="17" lat="-1.8207856" lng="-80.7593947" width="100%" height="100%" onMapClick="@command('getCoordenadas')" />
+ </window>
+</zk>

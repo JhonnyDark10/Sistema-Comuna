@@ -1,0 +1,305 @@
+<?page title="Lista" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winPago" ?>
+<zk>
+	<window id="winPago"  height="380px"
+		width="670px" closable="true" border="normal" apply="controlador.Ctrl_IngresaPagoComunero"
+		position="center,center"
+		style="
+margin: 0px;
+border: #0093f9 1px solid;
+font: 1em arial, helvetica, sans-serif;
+color: white;
+background:#ffffff;border-radius: 8px;">
+		<vlayout vflex="1" hflex="1">
+		<groupbox>
+			<image src="/A_Iconos/registro.png"></image>
+			<groupbox>
+			<toolbar>
+			
+				<label style="font-size: 1em;color:black">
+					Fecha:
+				</label>
+				<textbox id="fechaactual" height="10px" width="80px"
+					style="font-size: 1em;color:black;border: none;" />
+				<label style="font-size: 1em;color:black">
+					Hora:
+				</label>
+				<textbox id="horaactual" height="10px" width="80px"
+					style="font-size: 1em;color:black;border: none;" />
+
+<space></space>
+				<label visible="false" style="font-size: 1em;color:black">
+					Total $
+				</label>
+				<textbox visible="false"
+					style="font-size: 1.3em;color:black;"
+					id="totalfac" width="80px" height="35px" xmlns:w="client">
+					<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+					
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)
+											||  (keyCode == 190)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+
+
+				</textbox>
+				<label style="font-size: 1em;color:black">
+					Efectivo $
+				</label>
+				<textbox
+					style="font-size: 1.3em;color:black;"
+					id="efectivofac" width="80px" height="35px" xmlns:w="client">
+						<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+					
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)
+											||  (keyCode == 190)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+
+
+				</textbox>
+				<label style="font-size: 1em;color:black">
+					Cambio $
+				</label>
+				<textbox id="cambiofac"
+					style="font-size: 1.3em;color:black;"
+					width="80px" height="35px" xmlns:w="client">
+				<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+					
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)
+											||  (keyCode == 190)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+
+
+				</textbox>
+			</toolbar>
+<separator></separator><separator></separator>
+			<tabbox id="tb" height="170px"
+				style="border-radius: 5px;border: white 1px solid;">
+				<tabs>
+					<tab label="Datos del Comunero"
+						style="border-radius: 5px;font-weight: bold;background:white;font-family: serif;font-size: 1em;border: none;" />
+				</tabs>
+				<tabpanels>
+					<tabpanel style="border-radius: 5px;">
+						<grid
+							style="background-color: transparent;
+			border: white 1px solid;
+			border-radius: 5px;">
+
+
+							<columns
+								style="background-color: transparent;">
+								<column align="left" hflex="min" />
+								<column />
+								<column align="left" hflex="min" />
+								<column />
+								
+
+							</columns>
+							<rows>
+								<row>
+									<cell>
+										<label
+											style="font-size: 1em;color:black;">
+											# Cédula:
+										</label>
+									</cell>
+									<cell>
+										<textbox width="90px"
+											id="cedula"
+											style="font-size: 1em;color:black;"
+											value="">
+										</textbox>
+									</cell>
+									<cell>
+										<label
+											style="font-size: 1em;color:black;">
+											Nombre:
+										</label>
+									</cell>
+									<cell>
+										<textbox width="180px"
+											id="nombre"
+											style="font-size: 1em;color:black;border: white 0px inset;"
+											value="">
+										</textbox>
+									</cell>
+									
+
+
+								</row>
+								<row>
+								
+									<cell>
+										<label
+											style="font-size: 1em;color:black;">
+											Categoria Pago:
+										</label>
+									</cell>
+									<cell>
+																		
+																			
+										<combobox id="comboCategoria"
+										model="@{winPago$composer.ListaCategorias}" height="30px"
+										width="140px" style="font-size: 1em;color:black"
+										selectedItem="@{winPago$composer.categoriaSeleccionado}"
+										value="">
+										<template name="model">
+											<comboitem
+												label="${each.descripcionPago}"
+												style="font-size: 1em;color:black;" />
+										</template>
+									</combobox>
+										
+									</cell>
+									<cell>
+										<label
+											style="font-size: 1em;color:black;">
+											Celular:
+										</label>
+									</cell>
+									<cell>
+										<textbox width="100px"
+											id="celular"
+											style="font-size: 1em;color:black;border: white 0px inset;"
+											value="">
+										</textbox>
+									</cell>
+									
+																	</row>
+																	
+																<row>
+																<cell>
+										<label
+											style="font-size: 1em;color:black;">
+											Forma Pago:
+										</label>
+									</cell>
+									<cell>
+									<combobox id="comboPago"
+										model="@{winPago$composer.ListaPagos}" height="30px"
+										width="140px" style="font-size: 1em;color:black"
+										selectedItem="@{winPago$composer.formaSeleccionado}"
+										value="">
+										<template name="model">
+											<comboitem
+												label="${each.descripcionForma}"
+												style="font-size: 1em;color:black;" />
+										</template>
+									</combobox>
+									</cell>
+									
+									
+									<cell>
+										<label
+											style="font-size: 1em;color:black;">
+											Ingrese Monto:
+										</label>
+									</cell>
+									<cell>
+										<textbox width="75px" height="35px"
+											id="id_monto"
+											style="font-size: 1.3em;color:black;"
+											value="" xmlns:w="client">
+									<attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+					
+										var keyCode = event.keyCode;
+										if( keyCode == 8 // back space
+											|| keyCode == 13 // enter
+											|| keyCode == 16 // enter
+											|| (keyCode >= 35 && keyCode <= 40) // home, end, arrows
+											|| keyCode == 46) { // Delete
+											this.$doKeyDown_(evt);
+										} else if ( !evt.shiftKey &&  // only do without shift key
+											(keyCode >= 48 && keyCode <= 57)
+											|| (keyCode >= 96 && keyCode <= 105)
+											||  (keyCode == 190)) {// number range
+											this.$doKeyDown_(evt);
+										} else {
+											evt.stop();
+											return;
+										}
+									}
+								]]></attribute>
+
+
+										</textbox>
+									</cell>
+																
+																</row>
+							</rows>
+						</grid>
+
+
+					</tabpanel>
+
+				</tabpanels>
+			</tabbox>
+<toolbar>
+<separator></separator>
+<space width="335px"></space>
+ <button id="grabar" label="Guardar / Reporte" src="A_Iconos/imprimir.png" height="33px"
+									style="border-radius: 5px;font-size: 1.2em;color:white"/>
+				
+					 <button id="salir" label="Salir" src="A_Iconos/regresar.png" height="33px"
+									style="border-radius: 5px;font-size: 1em;color:white" />
+					
+				
+                
+					
+					</toolbar></groupbox>
+</groupbox>
+			
+			
+		</vlayout>
+
+	</window>
+</zk>

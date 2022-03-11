@@ -1,0 +1,166 @@
+<zk>
+
+
+	<groupbox id="grupo">
+
+		
+			<div apply="controlador.RecuperaCorreo">
+
+
+				<columnlayout height="100%" width="100%">
+					
+					
+					<columnchildren width="80%"
+					>
+						<image src="A_Citacion/cabeceraOficio.png"
+							width="70%" />
+
+						<separator></separator>
+
+
+						<space width="5%"></space>
+
+						<label value="Fecha :"
+							style="font-size:0.9em;color:black">
+						</label>
+						<space width="9%"></space>
+
+						<textbox height="20px" id="fecha"
+							style="font-size:1em;color:black;border:none;">
+						</textbox>
+						<separator></separator>
+						<space width="5%"></space>
+
+						<label value="Hora :"
+							style="font-size:0.9em;color:black">
+						</label>
+
+						<space width="9.5%"></space>
+						<textbox height="20px" id="hora"
+							style="font-size:1em;color:black;border:none;">
+						</textbox>
+						<separator></separator>
+						<space width="5%"></space>
+
+						<label value="Asunto :"
+							style="font-size:0.9em;color:black">
+						</label>
+
+						<space width="8.5%"></space>
+						<textbox height="17px" width="160px" value=""
+							id="asunto" style="font-size:1em;border:none;" />
+
+						<separator></separator>
+						<space width="5%"></space>
+
+						<label value="Lugar :"
+							style="font-size:0.9em;color:black">
+						</label>
+						<space width="9%"></space>
+
+
+						<textbox height="20px" width="160px" value=""
+							id="lugar" style="font-size:1em;border:none;" />
+
+						<separator></separator>
+						<space width="5%"></space>
+
+						<label value="Correo Destino :"
+							style="font-size:0.9em;color:black">
+						</label>
+						<space width="4%"></space>
+						<textbox height="20px" width="160px" value=""
+							id="correo" style="font-size:1em;border:none;" />
+
+
+						<separator></separator>
+						<separator></separator>
+						<separator></separator>
+
+						<space width="5%"></space>
+
+						<label value="Estimado/s :"
+							style="font-size:0.9em;color:black">
+						</label>
+
+						<separator></separator>
+						<space width="5%"></space>
+						<textbox height="100px" width="60%"
+							multiline="true" id="descripcion"
+							style="font-size:1em;color:black;border:none;">
+						</textbox>
+
+
+
+						<separator></separator>
+						<separator></separator>
+						<separator></separator>
+						<separator></separator>
+						<space width="25%"></space>
+
+						<label value="Atentamente"
+							style="font-size:0.9em;color:black">
+						</label>
+						<separator></separator>
+						<space width="22%"></space>
+						<label value="Presidente/a de la Comuna"
+							style="font-size:0.9em;color:black">
+						</label>
+
+
+
+
+
+						<separator></separator>
+						<separator></separator>
+						<separator></separator>
+						<separator></separator>
+						<image src="A_Citacion/pie2Oficio.png"
+							width="70%" />
+
+
+					</columnchildren>
+
+					<columnchildren width="20%">
+						<separator height="100px"></separator>
+						<separator></separator>
+						<separator></separator>
+						<label value="Opciones de Envio:"
+							style="font-size:1em;color:black">
+						</label>
+
+						<separator height="20px"></separator>
+						
+						<checkbox id="uno" label="Personal"
+							style="font-size: 1em;color:black" />
+							<separator></separator>
+						<checkbox id="muchos"
+							label="Multiples Comuneros" style="font-size: 1em;color:black" />
+
+						<separator></separator>
+						<separator></separator>
+						<separator></separator>
+						<separator></separator>
+						<separator></separator>
+						<separator></separator>
+						<button label="Enviar" id="enviar" height="38px"
+							style="border-radius: 5px;font-size: 1.2em;color:white"
+							width="100px" src="A_Iconos/inicio1.png" />
+						<separator></separator>
+						<label id="mensaje"
+							style="text-decoration : underline;font-size:1em;color:blue"
+							value="" />
+
+
+					</columnchildren>
+				</columnlayout>
+
+
+
+			</div>
+		
+	</groupbox>
+
+
+
+</zk>
